@@ -291,7 +291,7 @@
       font-size: 1.8rem;
       cursor: pointer;
       padding: 6px 14px;
-      border-radius: 6px;
+      border-radius: 50%;
       box-shadow: 0 3px 8px rgba(37, 117, 252, 0.7);
       user-select: none;
       transition: background-color 0.3s ease;
@@ -695,8 +695,7 @@ window.addEventListener('scroll', () => {
   const threshold = 100; // px from top to toggle button states
 
   if (scrollTop <= threshold) {
-    // Near top: show "See More ↓"
-    seeMoreBtn.textContent = 'See More ↓';
+    seeMoreBtn.textContent = 'More ↓';
     seeMoreBtn.dataset.state = 'top';
   } else {
     // Scrolled down: show "Top ↑"
