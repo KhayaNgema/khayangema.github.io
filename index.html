@@ -6,19 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
 
-@media (max-width: 768px) {
-  header .row {
-    flex-direction: column; /* stack children vertically */
-  }
-  header .col-8, 
-  header .col-4 {
-    max-width: 100%;
-    flex: 0 0 100%;
-  }
-  header .col-4 {
-    margin-top: 20px; 
-  }
-}
 
     .project,
     h1,
@@ -339,6 +326,37 @@
     .screenshots-container::-webkit-scrollbar {
       display: none;
     }
+
+    /* Override existing header .row layout for responsive stacking */
+@media (max-width: 768px) {
+  header .row {
+    flex-direction: column;     /* Stack text and image vertically */
+    align-items: flex-start;    /* Align all items to the start (left) */
+  }
+
+  /* Text column - full width */
+  header .col-8 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-bottom: 15px;      /* space below text */
+  }
+
+  /* Image column - full width, left aligned */
+  header .col-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: left !important; /* Left align image container */
+  }
+
+  /* Image styling for responsiveness */
+  header img {
+    max-width: 100%;    /* Allow image to scale down responsively */
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(101, 101, 101, 0.3);
+  }
+}
+
 
     /* Screenshot images */
     .screenshots-container img {
