@@ -677,37 +677,38 @@ section > .section-content.collapsed {
         });
       });
 
-      // See More / Top button logic
-      const seeMoreBtn = document.getElementById('seeMoreBtn');
-      const resumeSection = document.getElementById('resume');
+const seeMoreBtn = document.getElementById('seeMoreBtn');
+const resumeSection = document.getElementById('resume');
 
-      seeMoreBtn.addEventListener('click', () => {
-        if (seeMoreBtn.dataset.state === 'bottom') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          resumeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+seeMoreBtn.addEventListener('click', () => {
+  if (seeMoreBtn.dataset.state === 'top') {
+    // Scroll to resume section
+    resumeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
 
-      window.addEventListener('scroll', () => {
-        const scrollFromTop = window.scrollY || window.pageYOffset;
-        const documentHeight = document.documentElement.scrollHeight;
-        const windowHeight = window.innerHeight;
-        const scrollFromBottom = documentHeight - (scrollFromTop + windowHeight);
-        const nearBottomThreshold = 100;
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY || window.pageYOffset;
+  const threshold = 100; // px from top to toggle button states
 
-        if (scrollFromBottom <= nearBottomThreshold) {
-          seeMoreBtn.textContent = 'Top ↑';
-          seeMoreBtn.dataset.state = 'bottom';
-        } else {
-          seeMoreBtn.textContent = 'See More ↓';
-          seeMoreBtn.dataset.state = 'top';
-        }
-      });
+  if (scrollTop <= threshold) {
+    // Near top: show "See More ↓"
+    seeMoreBtn.textContent = 'See More ↓';
+    seeMoreBtn.dataset.state = 'top';
+  } else {
+    // Scrolled down: show "Top ↑"
+    seeMoreBtn.textContent = 'Top ↑';
+    seeMoreBtn.dataset.state = 'bottom';
+  }
+});
 
-      // Initialize button state
-      seeMoreBtn.textContent = 'See More ↓';
-      seeMoreBtn.dataset.state = 'top';
+// Initialize button state on load
+seeMoreBtn.textContent = 'See More ↓';
+seeMoreBtn.dataset.state = 'top';
+
 
       // Scroll buttons functionality for screenshots (existing)
       document.querySelectorAll('.screenshots-wrapper').forEach(wrapper => {
