@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <style>
-
 .project,
 h1,
 p,
 h2,
-h3
+h3,
 .skills-category,
 .resume-buttons,
 #contact p,
@@ -64,6 +63,20 @@ h3
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+            /* Enable horizontal scrolling */
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+        }
+        /* Layout sections horizontally */
+        .container > section {
+            display: inline-block;
+            vertical-align: top;
+            width: 1000px; /* Fixed width to enable horizontal scroll */
+            white-space: normal; /* normal text wrap */
+            box-sizing: border-box;
+            margin-right: 20px; /* spacing between sections */
         }
         header {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
@@ -140,6 +153,11 @@ h3
         .col-12 { flex: 0 0 100%;   max-width: 100%;   }
         /* Responsive stacking for smaller screens */
         @media (max-width: 768px) {
+            .container > section {
+                display: block;
+                width: auto;
+                margin-right: 0;
+            }
             .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
             .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
                 flex: 0 0 100%;
@@ -148,6 +166,8 @@ h3
             .container {
                 margin: 20px 10px;
                 padding: 20px;
+                overflow-x: visible; /* disable horizontal scroll on mobile */
+                white-space: normal;
             }
             header h1 {
                 font-size: 2rem;
@@ -314,53 +334,54 @@ h3
             margin-bottom: 10px;
         }
 
-           #resume {
-    padding-right: 0;
-  }
+       #resume {
+          padding-right: 0;
+        }
 
-  .resume-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
+        .resume-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-  .btn {
-    background-color: #2575fc;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
-    user-select: none;
-  }
+        .btn {
+            background-color: #2575fc;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+            user-select: none;
+            cursor: pointer;
+            border: none;
+        }
 
-  .btn:hover {
-    background-color: #6a11cb;
-  }
+        .btn:hover {
+            background-color: #6a11cb;
+        }
 
-  .btn.btn-view {
-    background-color: #4a90e2;
-  }
-  .btn.btn-view:hover {
-    background-color: #3573d1;
-  }
+        .btn.btn-view {
+            background-color: #4a90e2;
+        }
+        .btn.btn-view:hover {
+            background-color: #3573d1;
+        }
 
-  /* Responsive: stack buttons vertically on smaller screens */
-  @media (max-width: 480px) {
-    .resume-buttons {
-      flex-direction: column;
-      gap: 10px;
-    }
-    .btn {
-      width: 100%;
-      text-align: center;
-      padding: 14px 0;
-    }
-  }
-
+        /* Responsive: stack buttons vertically on smaller screens */
+        @media (max-width: 480px) {
+            .resume-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+                padding: 14px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -369,14 +390,13 @@ h3
             <div class="row">
                 <div class="col-8">
                     <h1>Khayalethu Xoliswa Ngema</h1>
-<p>
-I am Khayalethu, a passionate Junior C# Developer with one year of hands-on experience building, deploying, and maintaining modern web applications.<br>
-I am skilled in applying Object-Oriented Programming (OOP) principles such as abstraction, encapsulation, inheritance, and polymorphism to create clean, modular, and scalable code.
-My expertise includes working with C#, HTML, MVC (Core), Bootstrap, JavaScript, CSS, SQL Server, and Microsoft Azure.<br>
-I combine backend and frontend development to craft functional, visually engaging, and responsive web solutions while adhering to SOLID principles for maintainable and extendable software design.<br>
-I am committed to writing high-quality code, continually improving my skills, and delivering applications with excellent user experiences.
-</p>
-
+                    <p>
+                    I am Khayalethu, a passionate Junior C# Developer with one year of hands-on experience building, deploying, and maintaining modern web applications.<br>
+                    I am skilled in applying Object-Oriented Programming (OOP) principles such as abstraction, encapsulation, inheritance, and polymorphism to create clean, modular, and scalable code.<br>
+                    My expertise includes working with C#, HTML, MVC (Core), Bootstrap, JavaScript, CSS, SQL Server, and Microsoft Azure.<br>
+                    I combine backend and frontend development to craft functional, visually engaging, and responsive web solutions while adhering to SOLID principles for maintainable and extendable software design.<br>
+                    I am committed to writing high-quality code, continually improving my skills, and delivering applications with excellent user experiences.
+                    </p>
                 </div>
                 <div class="col-4" style="text-align: center;">
                     <img src="header-image.png" alt="Header Image"/>
@@ -384,158 +404,162 @@ I am committed to writing high-quality code, continually improving my skills, an
             </div>
         </header>
 
-<section id="resume">
-      <h2>
-        Resume
-        <span class="caret">▼</span>
-      </h2>
-      <div class="section-content">
-        <div class="resume-buttons">
-          <a href="your_resume.pdf" target="_blank" rel="noopener" class="btn btn-view" aria-label="View Resume PDF">
-            View Resume
-          </a>
-          <a href="your_resume.pdf" download class="btn btn-download" aria-label="Download Resume PDF">
-            Download Resume
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>
-        Projects
-        <span class="caret">▼</span>
-      </h2>
-      <div class="section-content">
-        <div class="project">
-          <h3>Project 1: Portfolio Website</h3>
-          <p>A personal website to showcase my work and skills.</p>
-          <p><strong>Programming Languages Used:</strong> HTML, CSS</p>
-          <p><strong>Tools:</strong> GitHub Pages, VS Code</p>
-          <p><strong>Features:</strong> Responsive design, clean layout</p>
-
-          <div class="project-media">
-            <h4>Screenshots</h4>
-            <div class="screenshots-wrapper">
-              <button class="scroll-btn left-btn" aria-label="Scroll Left">&lt;</button>
-              <div class="screenshots-container" tabindex="0">
-                <img src="project1-screenshot-1.jpg" alt="Project 1 Screenshot 1" />
-                <img src="project1-screenshot-2.jpg" alt="Project 1 Screenshot 2" />
-                <img src="project1-screenshot-3.jpg" alt="Project 1 Screenshot 3" />
-              </div>
-              <button class="scroll-btn right-btn" aria-label="Scroll Right">&gt;</button>
-            </div>
-
-            <h4>Videos (Optional)</h4>
-            <div class="videos-container">
-              <video controls>
-                <source src="project1-demo-1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+        <section id="resume">
+          <h2>
+            Resume
+            <span class="caret">▼</span>
+          </h2>
+          <div class="section-content">
+            <div class="resume-buttons">
+              <a href="your_resume.pdf" target="_blank" rel="noopener" class="btn btn-view" aria-label="View Resume PDF">
+                View Resume
+              </a>
+              <a href="your_resume.pdf" download class="btn btn-download" aria-label="Download Resume PDF">
+                Download Resume
+              </a>
             </div>
           </div>
+        </section>
 
-          <p><a href="https://yourprojectlink.com">View Project</a></p>
-        </div>
-        
-        <div class="project">
-          <h3>Project 2: Chatbot Assistant</h3>
-          <p>An AI-powered chatbot for customer support.</p>
-          <p><strong>Programming Languages Used:</strong> Python</p>
-          <p><strong>Tools:</strong> Flask, OpenAI API</p>
-          <p><strong>Features:</strong> Natural language understanding, real-time responses</p>
+        <!-- Projects Section -->
+        <section id="projects">
+          <h2>
+            Projects
+            <span class="caret">▼</span>
+          </h2>
+          <div class="section-content">
+            <div class="project">
+              <h3>Project 1: Portfolio Website</h3>
+              <p>A personal website to showcase my work and skills.</p>
+              <p><strong>Programming Languages Used:</strong> HTML, CSS</p>
+              <p><strong>Tools:</strong> GitHub Pages, VS Code</p>
+              <p><strong>Features:</strong> Responsive design, clean layout</p>
 
-          <div class="project-media">
-            <h4>Screenshots</h4>
-            <div class="screenshots-wrapper">
-              <button class="scroll-btn left-btn" aria-label="Scroll Left">&lt;</button>
-              <div class="screenshots-container" tabindex="0">
-                <img src="project2-screenshot-1.jpg" alt="Project 2 Screenshot 1" />
-                <img src="project2-screenshot-2.jpg" alt="Project 2 Screenshot 2" />
+              <div class="project-media">
+                <h4>Screenshots</h4>
+                <div class="screenshots-wrapper">
+                  <button class="scroll-btn left-btn" aria-label="Scroll Left">&lt;</button>
+                  <div class="screenshots-container" tabindex="0">
+                    <img src="project1-screenshot-1.jpg" alt="Project 1 Screenshot 1" />
+                    <img src="project1-screenshot-2.jpg" alt="Project 1 Screenshot 2" />
+                    <img src="project1-screenshot-3.jpg" alt="Project 1 Screenshot 3" />
+                  </div>
+                  <button class="scroll-btn right-btn" aria-label="Scroll Right">&gt;</button>
+                </div>
+
+                <h4>Videos (Optional)</h4>
+                <div class="videos-container">
+                  <video controls>
+                    <source src="project1-demo-1.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
-              <button class="scroll-btn right-btn" aria-label="Scroll Right">&gt;</button>
-            </div>
 
-            <h4>Videos</h4>
-            <div class="videos-container">
-              <video controls>
-                <source src="project2-demo-1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <video controls>
-                <source src="project2-demo-2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <p><a href="https://yourprojectlink.com">View Project</a></p>
+            </div>
+            
+            <div class="project">
+              <h3>Project 2: Chatbot Assistant</h3>
+              <p>An AI-powered chatbot for customer support.</p>
+              <p><strong>Programming Languages Used:</strong> Python</p>
+              <p><strong>Tools:</strong> Flask, OpenAI API</p>
+              <p><strong>Features:</strong> Natural language understanding, real-time responses</p>
+
+              <div class="project-media">
+                <h4>Screenshots</h4>
+                <div class="screenshots-wrapper">
+                  <button class="scroll-btn left-btn" aria-label="Scroll Left">&lt;</button>
+                  <div class="screenshots-container" tabindex="0">
+                    <img src="project2-screenshot-1.jpg" alt="Project 2 Screenshot 1" />
+                    <img src="project2-screenshot-2.jpg" alt="Project 2 Screenshot 2" />
+                  </div>
+                  <button class="scroll-btn right-btn" aria-label="Scroll Right">&gt;</button>
+                </div>
+
+                <h4>Videos</h4>
+                <div class="videos-container">
+                  <video controls>
+                    <source src="project2-demo-1.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <video controls>
+                    <source src="project2-demo-2.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+
+              <p><a href="https://yourprojectlink.com">View Project</a></p>
             </div>
           </div>
+        </section>
 
-          <p><a href="https://yourprojectlink.com">View Project</a></p>
+        <!-- Skills Section -->
+        <section id="skills">
+          <h2>
+            Skills
+            <span class="caret">▼</span>
+          </h2>
+          <div class="section-content">
+            <div class="skills-category">
+              <h3>Technical Skills</h3>
+              <ul>
+                <li>Web Development</li>
+                <li>Version Control (Git)</li>
+                <li>Database Management</li>
+              </ul>
+            </div>
+
+            <div class="skills-category">
+              <h3>Programming Languages</h3>
+              <ul>
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>HTML/CSS</li>
+              </ul>
+            </div>
+
+            <div class="skills-category">
+              <h3>Communication Skills</h3>
+              <ul>
+                <li>Public Speaking</li>
+                <li>Technical Writing</li>
+                <li>Presentation Design</li>
+              </ul>
+            </div>
+
+            <div class="skills-category">
+              <h3>Soft Skills</h3>
+              <ul>
+                <li>Teamwork</li>
+                <li>Problem Solving</li>
+                <li>Adaptability</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+          <h2>
+            Contact Information
+            <span class="caret">▼</span>
+          </h2>
+          <div class="section-content">
+            <p>Email: your.email@example.com</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">yourprofile</a></p>
+          </div>
+        </section>
+
+        <!-- See More Button -->
+        <div style="text-align: center; margin-top: 10px;">
+          <button id="seeMoreBtn" class="btn" aria-label="See More Resume Content">See More</button>
         </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <h2>
-        Skills
-        <span class="caret">▼</span>
-      </h2>
-      <div class="section-content">
-        <div class="skills-category">
-          <h3>Technical Skills</h3>
-          <ul>
-            <li>Web Development</li>
-            <li>Version Control (Git)</li>
-            <li>Database Management</li>
-          </ul>
-        </div>
-
-        <div class="skills-category">
-          <h3>Programming Languages</h3>
-          <ul>
-            <li>Python</li>
-            <li>JavaScript</li>
-            <li>HTML/CSS</li>
-          </ul>
-        </div>
-
-        <div class="skills-category">
-          <h3>Communication Skills</h3>
-          <ul>
-            <li>Public Speaking</li>
-            <li>Technical Writing</li>
-            <li>Presentation Design</li>
-          </ul>
-        </div>
-
-        <div class="skills-category">
-          <h3>Soft Skills</h3>
-          <ul>
-            <li>Teamwork</li>
-            <li>Problem Solving</li>
-            <li>Adaptability</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <h2>
-        Contact Information
-        <span class="caret">▼</span>
-      </h2>
-      <div class="section-content">
-        <p>Email: your.email@example.com</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">yourprofile</a></p>
-      </div>
-    </section>
-
-  </div>
+    </div>
 
 <script>
-  // Add toggle functionality to all section h2 caret icons
+  // Toggle sections open/close on h2 click
   document.querySelectorAll('section h2').forEach(heading => {
     const caret = heading.querySelector('.caret');
     if (!caret) return;
@@ -548,19 +572,17 @@ I am committed to writing high-quality code, continually improving my skills, an
     heading.addEventListener('click', () => {
       const isCollapsed = heading.classList.toggle('collapsed');
       if (isCollapsed) {
-        // Collapse - max height 0 to hide content smoothly
         sectionContent.style.maxHeight = '0px';
       } else {
-        // Expand - max height large enough to show content
         sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
       }
     });
 
-    // Initialize expanded with max-height to enable transition
+    // Initialize expanded
     sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
   });
 
-  // Scroll button functionality (your existing code)
+  // Scroll buttons for screenshots
   document.querySelectorAll('.screenshots-wrapper').forEach(wrapper => {
     const container = wrapper.querySelector('.screenshots-container');
     const btnLeft = wrapper.querySelector('.left-btn');
@@ -573,6 +595,18 @@ I am committed to writing high-quality code, continually improving my skills, an
     btnRight.addEventListener('click', () => {
       container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
+  });
+
+  // "See More" button scrolls container horizontally to #resume
+  document.getElementById('seeMoreBtn').addEventListener('click', () => {
+    const container = document.querySelector('.container');
+    const resumeSection = document.getElementById('resume');
+    if (resumeSection) {
+      const containerRect = container.getBoundingClientRect();
+      const resumeRect = resumeSection.getBoundingClientRect();
+      const scrollLeft = resumeRect.left - containerRect.left + container.scrollLeft;
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
   });
 </script>
 </body>
