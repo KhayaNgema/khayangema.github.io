@@ -519,6 +519,10 @@ section > .section-content.collapsed {
     padding: 14px 0;
   }
 }
+
+#screenshotModal[aria-hidden="false"] {
+  display: block !important;
+}
   </style>
 
 </head>
@@ -705,6 +709,28 @@ section > .section-content.collapsed {
     </div>
   </div>
 
+<div id="screenshotModal" aria-hidden="true" role="dialog" tabindex="-1" aria-label="Screenshot Preview" style="display:none;">
+  <div id="modalOverlay" style="
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+    z-index: 99999;">
+    <img id="modalImage" src="" alt="Screenshot Preview" style="
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #000;
+      cursor: default;
+      user-select: none;
+    " />
+  </div>
+</div>
+
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Toggle caret and collapse content
@@ -773,6 +799,49 @@ seeMoreBtn.dataset.state = 'top';
         }
       });
     });
+
+// Screenshot modal functionality
+const screenshotModal = document.getElementById('screenshotModal');
+const modalOverlay = document.getElementById('modalOverlay');
+const modalImage = document.getElementById('modalImage');
+
+// Function to open modal with correct image src and alt
+function openModal(imgSrc, imgAlt) {
+  modalImage.src = imgSrc;
+  modalImage.alt = imgAlt || 'Screenshot Preview';
+  screenshotModal.setAttribute('aria-hidden', 'false');
+  screenshotModal.style.display = 'block';
+  // Optional: lock scroll
+  document.body.style.overflow = 'hidden';
+  modalOverlay.focus();
+}
+
+// Function to close modal
+function closeModal() {
+  screenshotModal.setAttribute('aria-hidden', 'true');
+  screenshotModal.style.display = 'none';
+  modalImage.src = '';
+  document.body.style.overflow = '';
+}
+
+// Attach click listeners to all screenshots
+document.querySelectorAll('.screenshots-container img').forEach(img => {
+  img.style.cursor = 'zoom-in'; // visually cue user
+  img.addEventListener('click', () => {
+    openModal(img.src, img.alt);
+  });
+});
+
+// Close modal on overlay click
+modalOverlay.addEventListener('click', closeModal);
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && screenshotModal.getAttribute('aria-hidden') === 'false') {
+    closeModal();
+  }
+});
+
   </script>
 </body>
 </html>
