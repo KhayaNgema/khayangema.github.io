@@ -6,22 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <style>
-          h2 {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  h2 .caret {
-    margin-left: 10px;
-    font-size: 1.0em;
-    user-select: none;
-    transition: transform 0.2s ease;
-  }
-  h2.collapsed .caret {
-    transform: rotate(-90deg);
-  }
+         h2 {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px; /* space within h2 at right for caret */
+}
+h2 .caret {
+  margin-left: 10px;
+  font-size: 0.75em;
+  user-select: none;
+  transition: transform 0.2s ease;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+h2.collapsed .caret {
+  transform: rotate(-90deg);
+}
 
   /* Section content wrapper we toggle */
   section > .section-content {
