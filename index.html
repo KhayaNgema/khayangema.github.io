@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Khayalethu Ngema Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="favicon.png"> <!-- Favicon added here -->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,12 +21,30 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
         header {
-            text-align: center;
-            /* padding: 30px 20px;  Removed specific padding as it's now handled by the row/col */
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
             border-radius: 10px 10px 0 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        header .row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 20px 0;
+            margin: 0 -15px;
+        }
+        header .col-8, header .col-4 {
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        header .col-8 {
+            flex: 0 0 66.66%;
+            max-width: 66.66%;
+        }
+        header .col-4 {
+            flex: 0 0 33.33%;
+            max-width: 33.33%;
+            text-align: center;
         }
         header h1 {
             margin-bottom: 10px;
@@ -39,8 +56,12 @@
             margin-top: 0;
             font-weight: 300;
         }
-        /* header img style moved inline in HTML for the column layout */
-
+        header img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(101,101,101,0.3);
+        }
         section {
             margin-bottom: 50px;
         }
@@ -54,6 +75,74 @@
             background: linear-gradient(90deg, #e0eafc 80%, #cfdef3);
             border-radius: 6px 6px 0 0;
         }
+        /* Grid system */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+        .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+            padding-left: 15px;
+            padding-right: 15px;
+            box-sizing: border-box;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        .col-1  { flex: 0 0 8.33%;  max-width: 8.33%; }
+        .col-2  { flex: 0 0 16.66%; max-width: 16.66%; }
+        .col-3  { flex: 0 0 25%;    max-width: 25%;    }
+        .col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
+        .col-5  { flex: 0 0 41.66%; max-width: 41.66%; }
+        .col-6  { flex: 0 0 50%;    max-width: 50%;    }
+        .col-7  { flex: 0 0 58.33%; max-width: 58.33%; }
+        .col-8  { flex: 0 0 66.66%; max-width: 66.66%; }
+        .col-9  { flex: 0 0 75%;    max-width: 75%;    }
+        .col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
+        .col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
+        .col-12 { flex: 0 0 100%;   max-width: 100%;   }
+        /* Responsive stacking for smaller screens */
+        @media (max-width: 768px) {
+            .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+            .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            .container {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+            header p {
+                font-size: 0.9rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .skills-category h3 {
+                font-size: 1.2rem;
+            }
+            .screenshots-container img {
+                width: 180px;
+                height: 120px;
+            }
+        }
+
+        /* Project styling */
         .project {
             background: #f9faff;
             padding: 20px;
@@ -70,11 +159,13 @@
             margin-top: 0;
             color: #6a11cb;
         }
-        /* Hide old project img/video, as new containers are used */
-        .project > img, .project > video {
-             display: none; 
+        /* Hide old direct project images/videos */
+        .project > img,
+        .project > video {
+            display: none;
         }
 
+        /* Skills section */
         .skills-category {
             margin-bottom: 30px;
         }
@@ -103,154 +194,101 @@
         #contact a {
             color: #6a11cb;
         }
-        
-        /* Basic grid system */
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: -15px;
-            margin-right: -15px;
-        }
 
-        .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
-        .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-            padding-left: 15px;
-            padding-right: 15px;
-            box-sizing: border-box;
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-
-        /* Widths for desktop (12 columns) */
-        .col-1  { flex: 0 0 8.33%;  max-width: 8.33%;  }
-        .col-2  { flex: 0 0 16.66%; max-width: 16.66%; }
-        .col-3  { flex: 0 0 25%;    max-width: 25%;    }
-        .col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
-        .col-5  { flex: 0 0 41.66%; max-width: 41.66%; }
-        .col-6  { flex: 0 0 50%;    max-width: 50%;    }
-        .col-7  { flex: 0 0 58.33%; max-width: 58.33%; }
-        .col-8  { flex: 0 0 66.66%; max-width: 66.66%; }
-        .col-9  { flex: 0 0 75%;    max-width: 75%;    }
-        .col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
-        .col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
-        .col-12 { flex: 0 0 100%;   max-width: 100%;   }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .container {
-                margin: 20px 10px;
-                padding: 20px;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-            header p {
-                font-size: 1rem;
-            }
-            /* header img is now in a col-4, so it will stack */
-            .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
-            .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-            .project {
-                padding: 15px;
-            }
-        }
-        @media (max-width: 480px) {
-            body {
-                font-size: 14px;
-            }
-            header h1 {
-                font-size: 1.5rem;
-            }
-            header p {
-                font-size: 0.9rem;
-            }
-            h2 {
-                font-size: 1.2rem;
-            }
-            .skills-category h3 {
-                font-size: 1.2rem;
-            }
-            /* Make screenshots a bit smaller on very small screens */
-            .screenshots-container img {
-                width: 180px;
-                height: 120px;
-            }
-        }
-
-        /* New styles for media sections */
+        /* Media section */
         .project-media {
             margin-top: 20px;
         }
-
         .project-media h4 {
             color: #4a4a4a;
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
 
+        /* Screenshots wrapper for scroll buttons */
+        .screenshots-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Scroll buttons styling */
+        .scroll-btn {
+            background-color: rgba(37, 117, 252, 0.8);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 6px;
+            box-shadow: 0 3px 8px rgba(37, 117, 252, 0.7);
+            user-select: none;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+        .scroll-btn:hover {
+            background-color: rgba(37, 117, 252, 1);
+        }
+        .left-btn {
+            margin-right: 10px;
+        }
+        .right-btn {
+            margin-left: 10px;
+        }
+
+        /* Screenshots container */
         .screenshots-container {
-            display: flex; /* Use flexbox for horizontal layout */
-            overflow-x: auto; /* Enable horizontal scrolling */
-            gap: 15px; /* Space between images */
-            padding-bottom: 10px; /* Space for scrollbar */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            scrollbar-width: thin; /* Firefox */
-            scrollbar-color: #2575fc #e0eafc; /* Firefox */
+            flex: 1 1 auto;
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
         }
-
-        /* Custom scrollbar for Webkit browsers (Chrome, Safari) */
+        /* Hide scrollbar in Webkit */
         .screenshots-container::-webkit-scrollbar {
-            height: 8px;
+            display: none;
         }
 
-        .screenshots-container::-webkit-scrollbar-track {
-            background: #e0eafc;
-            border-radius: 10px;
-        }
-
-        .screenshots-container::-webkit-scrollbar-thumb {
-            background-color: #2575fc;
-            border-radius: 10px;
-            border: 2px solid #e0eafc;
-        }
-
+        /* Screenshot images */
         .screenshots-container img {
-            flex-shrink: 0; /* Prevent images from shrinking */
-            width: 250px; /* Fixed width for each image */
-            height: 150px; /* Fixed height, adjust as needed */
-            object-fit: cover; /* Cover the area, crop if necessary */
+            flex-shrink: 0;
+            width: 250px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
-
         .screenshots-container img:hover {
             transform: scale(1.03);
         }
 
+        /* Videos container */
         .videos-container video {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 10px; /* Space between multiple videos */
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="row" style="align-items: center; padding: 20px 0;">
+            <div class="row">
                 <div class="col-8">
                     <h1>Khayalethu Xoliswa Ngema</h1>
                     <p>Welcome to Khayalethu's portfolio website!</p>
                 </div>
                 <div class="col-4" style="text-align: center;">
-                    <!-- The header image now sits in this column -->
-                    <img src="header-image.png" alt="Header Image" style="max-width: 250px; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(101,101,101,0.3);">
+                    <img src="header-image.png" alt="Header Image" />
                 </div>
             </div>
         </header>
@@ -269,27 +307,27 @@
                 <p><strong>Programming Languages Used:</strong> HTML, CSS</p>
                 <p><strong>Tools:</strong> GitHub Pages, VS Code</p>
                 <p><strong>Features:</strong> Responsive design, clean layout</p>
-                
+
                 <div class="project-media">
                     <h4>Screenshots</h4>
-                    <div class="screenshots-container">
-                        <!-- Replace with your actual project screenshots -->
-                        <img src="project1-screenshot-1.jpg" alt="Project 1 Screenshot 1">
-                        <img src="project1-screenshot-2.jpg" alt="Project 1 Screenshot 2">
-                        <img src="project1-screenshot-3.jpg" alt="Project 1 Screenshot 3">
-                        <img src="project1-screenshot-4.jpg" alt="Project 1 Screenshot 4">
-                        <img src="project1-screenshot-5.jpg" alt="Project 1 Screenshot 5">
-                        <!-- Add more images as needed -->
+                    <div class="screenshots-wrapper">
+                        <button class="scroll-btn left-btn" aria-label="Scroll Left">&lt;</button>
+                        <div class="screenshots-container" tabindex="0">
+                            <img src="project1-screenshot-1.jpg" alt="Project 1 Screenshot 1" />
+                            <img src="project1-screenshot-2.jpg" alt="Project 1 Screenshot 2" />
+                            <img src="project1-screenshot-3.jpg" alt="Project 1 Screenshot 3" />
+                            <img src="project1-screenshot-4.jpg" alt="Project 1 Screenshot 4" />
+                            <img src="project1-screenshot-5.jpg" alt="Project 1 Screenshot 5" />
+                        </div>
+                        <button class="scroll-btn right-btn" aria-label="Scroll Right">&gt;</button>
                     </div>
 
                     <h4>Videos (Optional)</h4>
                     <div class="videos-container">
-                        <!-- Replace with your actual project videos -->
                         <video controls>
-                            <source src="project1-demo-1.mp4" type="video/mp4">
+                            <source src="project1-demo-1.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
-                        <!-- Add more videos if needed -->
                     </div>
                 </div>
 
@@ -305,31 +343,30 @@
 
                 <div class="project-media">
                     <h4>Screenshots</h4>
-                    <div class="screenshots-container">
-                        <!-- Replace with your actual project screenshots -->
-                        <img src="project2-screenshot-1.jpg" alt="Project 2 Screenshot 1">
-                        <img src="project2-screenshot-2.jpg" alt="Project 2 Screenshot 2">
-                        <!-- Add more images as needed -->
+                    <div class="screenshots-wrapper">
+                        <button class="scroll-btn left-btn" aria-label="Scroll Left">&lt;</button>
+                        <div class="screenshots-container" tabindex="0">
+                            <img src="project2-screenshot-1.jpg" alt="Project 2 Screenshot 1" />
+                            <img src="project2-screenshot-2.jpg" alt="Project 2 Screenshot 2" />
+                        </div>
+                        <button class="scroll-btn right-btn" aria-label="Scroll Right">&gt;</button>
                     </div>
 
                     <h4>Videos</h4>
                     <div class="videos-container">
-                        <!-- Replace with your actual project videos -->
                         <video controls>
-                            <source src="project2-demo-1.mp4" type="video/mp4">
+                            <source src="project2-demo-1.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
                         <video controls>
-                            <source src="project2-demo-2.mp4" type="video/mp4">
+                            <source src="project2-demo-2.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
-                        <!-- Add more videos if needed -->
                     </div>
                 </div>
 
                 <p><a href="https://yourprojectlink.com">View Project</a></p>
             </div>
-
         </section>
 
         <section id="skills">
@@ -378,5 +415,21 @@
             <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">yourprofile</a></p>
         </section>
     </div>
+
+    <script>
+        document.querySelectorAll('.screenshots-wrapper').forEach(wrapper => {
+            const container = wrapper.querySelector('.screenshots-container');
+            const btnLeft = wrapper.querySelector('.left-btn');
+            const btnRight = wrapper.querySelector('.right-btn');
+            const scrollAmount = 250; // match screenshot image width + gap
+
+            btnLeft.addEventListener('click', () => {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+            btnRight.addEventListener('click', () => {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
