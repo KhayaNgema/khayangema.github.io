@@ -374,6 +374,10 @@ section {
   max-height: none !important; /* Allow content height when expanded */
 }
 #seeMoreBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
   background-color: #2575fc;
   color: white;
   padding: 12px 24px;
@@ -382,9 +386,10 @@ section {
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  user-select: none;
 }
-
 #seeMoreBtn:hover {
   background-color: #6a11cb;
 }
@@ -591,11 +596,46 @@ I am committed to writing high-quality code, continually improving my skills, an
     sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
   });
 
-document.getElementById('seeMoreBtn').addEventListener('click', () => {
-  const resumeSection = document.getElementById('resume');
-  // Scroll horizontally to the resume section
-  resumeSection.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+const seeMoreBtn = document.getElementById('seeMoreBtn');
+const resumeSection = document.getElementById('resume');
+
+seeMoreBtn.addEventListener('click', () => {
+  if (seeMoreBtn.dataset.state === 'bottom') {
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    // Scroll to Resume section header
+    resumeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 });
+
+// Listen to scroll events to toggle button text and state
+window.addEventListener('scroll', () => {
+  const scrollFromTop = window.scrollY || window.pageYOffset;
+  const documentHeight = document.documentElement.scrollHeight;
+  const windowHeight = window.innerHeight;
+  const scrollFromBottom = documentHeight - (scrollFromTop + windowHeight);
+
+  // Threshold to consider near bottom (pixels)
+  const nearBottomThreshold = 100;
+
+  if (scrollFromBottom <= nearBottomThreshold) {
+    // Near or at bottom - show "Top ↑"
+    seeMoreBtn.textContent = 'Top ↑';
+    seeMoreBtn.dataset.state = 'bottom';
+  } else {
+    // Else "See More ↓"
+    seeMoreBtn.textContent = 'See More ↓';
+    seeMoreBtn.dataset.state = 'top';
+  }
+});
+
+// Initialize button text
+(() => {
+  seeMoreBtn.textContent = 'See More ↓';
+  seeMoreBtn.dataset.state = 'top';
+})();
+
 
   // Scroll button functionality (your existing code)
   document.querySelectorAll('.screenshots-wrapper').forEach(wrapper => {
