@@ -376,15 +376,15 @@ section {
 #seeMoreBtn {
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9999;
   background-color: #ffff;
   color: #4a90e2;
   padding: 12px 24px;
   border-radius: 6px;
   font-weight: 600;
-  border: 1px;
-  border-color:#4a90e2;
+  border: 1px solid #4a90e2;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -393,7 +393,9 @@ section {
 }
 #seeMoreBtn:hover {
   background-color: #6a11cb;
+  color: #ffff;
 }
+
 
     </style>
 </head>
