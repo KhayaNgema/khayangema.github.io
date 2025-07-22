@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Khayalethu Ngema Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png"> <!-- Favicon added here -->
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,7 +23,7 @@
         }
         header {
             text-align: center;
-            padding: 30px 20px;
+            /* padding: 30px 20px;  Removed specific padding as it's now handled by the row/col */
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
             border-radius: 10px 10px 0 0;
@@ -38,13 +39,8 @@
             margin-top: 0;
             font-weight: 300;
         }
-        header img {
-            max-width: 250px;
-            height: auto;
-            margin-top: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(101,101,101,0.3);
-        }
+        /* header img style moved inline in HTML for the column layout */
+
         section {
             margin-bottom: 50px;
         }
@@ -74,13 +70,11 @@
             margin-top: 0;
             color: #6a11cb;
         }
-        .project img, .project video {
-            max-width: 100%;
-            height: auto;
-            margin-top: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        /* Hide old project img/video, as new containers are used */
+        .project > img, .project > video {
+             display: none; 
         }
+
         .skills-category {
             margin-bottom: 30px;
         }
@@ -109,6 +103,38 @@
         #contact a {
             color: #6a11cb;
         }
+        
+        /* Basic grid system */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
+        .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+            padding-left: 15px;
+            padding-right: 15px;
+            box-sizing: border-box;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        /* Widths for desktop (12 columns) */
+        .col-1  { flex: 0 0 8.33%;  max-width: 8.33%;  }
+        .col-2  { flex: 0 0 16.66%; max-width: 16.66%; }
+        .col-3  { flex: 0 0 25%;    max-width: 25%;    }
+        .col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
+        .col-5  { flex: 0 0 41.66%; max-width: 41.66%; }
+        .col-6  { flex: 0 0 50%;    max-width: 50%;    }
+        .col-7  { flex: 0 0 58.33%; max-width: 58.33%; }
+        .col-8  { flex: 0 0 66.66%; max-width: 66.66%; }
+        .col-9  { flex: 0 0 75%;    max-width: 75%;    }
+        .col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
+        .col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
+        .col-12 { flex: 0 0 100%;   max-width: 100%;   }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             .container {
@@ -121,12 +147,11 @@
             header p {
                 font-size: 1rem;
             }
-            header img {
-                max-width: 180px;
-                margin-top: 15px;
-            }
-            h2 {
-                font-size: 1.5rem;
+            /* header img is now in a col-4, so it will stack */
+            .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
+            .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+                flex: 0 0 100%;
+                max-width: 100%;
             }
             .project {
                 padding: 15px;
@@ -148,65 +173,87 @@
             .skills-category h3 {
                 font-size: 1.2rem;
             }
+            /* Make screenshots a bit smaller on very small screens */
+            .screenshots-container img {
+                width: 180px;
+                height: 120px;
+            }
         }
 
-        /* Basic grid system */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -15px;
-    margin-right: -15px;
-}
+        /* New styles for media sections */
+        .project-media {
+            margin-top: 20px;
+        }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
-.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-    padding-left: 15px;
-    padding-right: 15px;
-    box-sizing: border-box;
-    /* By default columns stack */
-    flex: 0 0 100%;
-    max-width: 100%;
-}
+        .project-media h4 {
+            color: #4a4a4a;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
 
-/* Widths for desktop (12 columns) */
-.col-1  { flex: 0 0 8.33%;  max-width: 8.33%;  }
-.col-2  { flex: 0 0 16.66%; max-width: 16.66%; }
-.col-3  { flex: 0 0 25%;    max-width: 25%;    }
-.col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
-.col-5  { flex: 0 0 41.66%; max-width: 41.66%; }
-.col-6  { flex: 0 0 50%;    max-width: 50%;    }
-.col-7  { flex: 0 0 58.33%; max-width: 58.33%; }
-.col-8  { flex: 0 0 66.66%; max-width: 66.66%; }
-.col-9  { flex: 0 0 75%;    max-width: 75%;    }
-.col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
-.col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
-.col-12 { flex: 0 0 100%;   max-width: 100%;   }
+        .screenshots-container {
+            display: flex; /* Use flexbox for horizontal layout */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            gap: 15px; /* Space between images */
+            padding-bottom: 10px; /* Space for scrollbar */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #2575fc #e0eafc; /* Firefox */
+        }
 
-/* Responsive stacking on smaller screens */
-@media (max-width: 768px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
-    .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
+        /* Custom scrollbar for Webkit browsers (Chrome, Safari) */
+        .screenshots-container::-webkit-scrollbar {
+            height: 8px;
+        }
 
+        .screenshots-container::-webkit-scrollbar-track {
+            background: #e0eafc;
+            border-radius: 10px;
+        }
+
+        .screenshots-container::-webkit-scrollbar-thumb {
+            background-color: #2575fc;
+            border-radius: 10px;
+            border: 2px solid #e0eafc;
+        }
+
+        .screenshots-container img {
+            flex-shrink: 0; /* Prevent images from shrinking */
+            width: 250px; /* Fixed width for each image */
+            height: 150px; /* Fixed height, adjust as needed */
+            object-fit: cover; /* Cover the area, crop if necessary */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .screenshots-container img:hover {
+            transform: scale(1.03);
+        }
+
+        .videos-container video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10px; /* Space between multiple videos */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-<header>
-    <div class="row" style="align-items: center; padding: 20px 0;">
-        <div class="col-8">
-            <h1>Khayalethu Xoliswa Ngema</h1>
-            <p>Welcome to Khayalethu's portfolio website!</p>
-        </div>
-        <div class="col-4" style="text-align: right;">
-            <!-- Insert the header image or something here -->
-            <img src="header-image.png" alt="Header Image" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(101,101,101,0.3);">
-        </div>
-    </div>
-</header>
+        <header>
+            <div class="row" style="align-items: center; padding: 20px 0;">
+                <div class="col-8">
+                    <h1>Khayalethu Xoliswa Ngema</h1>
+                    <p>Welcome to Khayalethu's portfolio website!</p>
+                </div>
+                <div class="col-4" style="text-align: center;">
+                    <!-- The header image now sits in this column -->
+                    <img src="header-image.png" alt="Header Image" style="max-width: 250px; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(101,101,101,0.3);">
+                </div>
+            </div>
+        </header>
 
         <section id="about">
             <h2>Summary</h2>
@@ -215,31 +262,79 @@
 
         <section id="projects">
             <h2>Projects</h2>
+
             <div class="project">
                 <h3>Project 1: Portfolio Website</h3>
                 <p>A personal website to showcase my work and skills.</p>
                 <p><strong>Programming Languages Used:</strong> HTML, CSS</p>
                 <p><strong>Tools:</strong> GitHub Pages, VS Code</p>
                 <p><strong>Features:</strong> Responsive design, clean layout</p>
-                <img src="project1-screenshot.jpg" alt="Project 1 Screenshot">
+                
+                <div class="project-media">
+                    <h4>Screenshots</h4>
+                    <div class="screenshots-container">
+                        <!-- Replace with your actual project screenshots -->
+                        <img src="project1-screenshot-1.jpg" alt="Project 1 Screenshot 1">
+                        <img src="project1-screenshot-2.jpg" alt="Project 1 Screenshot 2">
+                        <img src="project1-screenshot-3.jpg" alt="Project 1 Screenshot 3">
+                        <img src="project1-screenshot-4.jpg" alt="Project 1 Screenshot 4">
+                        <img src="project1-screenshot-5.jpg" alt="Project 1 Screenshot 5">
+                        <!-- Add more images as needed -->
+                    </div>
+
+                    <h4>Videos (Optional)</h4>
+                    <div class="videos-container">
+                        <!-- Replace with your actual project videos -->
+                        <video controls>
+                            <source src="project1-demo-1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- Add more videos if needed -->
+                    </div>
+                </div>
+
                 <p><a href="https://yourprojectlink.com">View Project</a></p>
             </div>
+
             <div class="project">
                 <h3>Project 2: Chatbot Assistant</h3>
                 <p>An AI-powered chatbot for customer support.</p>
                 <p><strong>Programming Languages Used:</strong> Python</p>
                 <p><strong>Tools:</strong> Flask, OpenAI API</p>
                 <p><strong>Features:</strong> Natural language understanding, real-time responses</p>
-                <video controls>
-                    <source src="project2-demo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+
+                <div class="project-media">
+                    <h4>Screenshots</h4>
+                    <div class="screenshots-container">
+                        <!-- Replace with your actual project screenshots -->
+                        <img src="project2-screenshot-1.jpg" alt="Project 2 Screenshot 1">
+                        <img src="project2-screenshot-2.jpg" alt="Project 2 Screenshot 2">
+                        <!-- Add more images as needed -->
+                    </div>
+
+                    <h4>Videos</h4>
+                    <div class="videos-container">
+                        <!-- Replace with your actual project videos -->
+                        <video controls>
+                            <source src="project2-demo-1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <video controls>
+                            <source src="project2-demo-2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- Add more videos if needed -->
+                    </div>
+                </div>
+
                 <p><a href="https://yourprojectlink.com">View Project</a></p>
             </div>
+
         </section>
 
         <section id="skills">
             <h2>Skills</h2>
+
             <div class="skills-category">
                 <h3>Technical Skills</h3>
                 <ul>
@@ -248,6 +343,7 @@
                     <li>Database Management</li>
                 </ul>
             </div>
+
             <div class="skills-category">
                 <h3>Programming Languages</h3>
                 <ul>
@@ -256,6 +352,7 @@
                     <li>HTML/CSS</li>
                 </ul>
             </div>
+
             <div class="skills-category">
                 <h3>Communication Skills</h3>
                 <ul>
@@ -264,6 +361,7 @@
                     <li>Presentation Design</li>
                 </ul>
             </div>
+
             <div class="skills-category">
                 <h3>Soft Skills</h3>
                 <ul>
