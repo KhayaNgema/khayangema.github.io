@@ -56,9 +56,9 @@ h3
             margin: 0;
             background: linear-gradient(to right, #e0eafc, #cfdef3);
             color: #333;
-            overflow-x: auto;
+            overflow-x: hidden;  /* prevent horizontal scroll */
+            white-space: normal; /* normal text wrapping */
             scroll-behavior: smooth;
-             white-space: nowrap;
         }
         .container {
             max-width: 1100px;
@@ -365,10 +365,10 @@ h3
   }
 
 section {
-  display: inline-block; /* So that sections appear next to each other horizontally */
   vertical-align: top;
-  width: 100vw; /* Full viewport width */
-  white-space: normal; /* Preserve normal inside sections */
+  display: block;
+  width: auto;
+  white-space: normal;
 }
 .section-content {
   max-height: none !important; /* Allow content height when expanded */
