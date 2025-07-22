@@ -609,30 +609,38 @@ I am committed to writing high-quality code, continually improving my skills, an
   </div>
 
 <script>
-  // Add toggle functionality to all section h2 caret icons
-  document.querySelectorAll('section h2').forEach(heading => {
-    const caret = heading.querySelector('.caret');
-    if (!caret) return;
+document.querySelectorAll('section h2').forEach(heading => {
+  const caret = heading.querySelector('.caret');
+  if (!caret) return;
 
-    const sectionContent = heading.nextElementSibling;
-    if (!sectionContent) return;
+  const sectionContent = heading.nextElementSibling;
+  if (!sectionContent) return;
 
-    heading.style.userSelect = 'none';
+  heading.style.userSelect = 'none';
 
-    heading.addEventListener('click', () => {
-      const isCollapsed = heading.classList.toggle('collapsed');
-      if (isCollapsed) {
-        // Collapse - max height 0 to hide content smoothly
-        sectionContent.style.maxHeight = '0px';
-      } else {
-        // Expand - max height large enough to show content
-        sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-      }
-    });
-
-    // Initialize expanded with max-height to enable transition
+  // Initialize expanded or collapsed state
+  if (heading.classList.contains('collapsed')) {
+    sectionContent.style.maxHeight = '0px';
+  } else {
     sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
+  }
+
+  heading.addEventListener('click', () => {
+    const isCollapsed = heading.classList.toggle('collapsed');
+    if (isCollapsed) {
+      sectionContent.style.maxHeight = '0px';
+    } else {
+      sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
+    }
   });
+
+  window.addEventListener('resize', () => {
+    if (!heading.classList.contains('collapsed')) {
+      sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
+    }
+  });
+});
+
 
 const seeMoreBtn = document.getElementById('seeMoreBtn');
 const resumeSection = document.getElementById('resume');
