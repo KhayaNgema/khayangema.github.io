@@ -277,6 +277,31 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin-bottom: 10px;
         }
+
+         .download-resume-btn {
+        position: absolute;
+        top: 35px; /* aligns near the h2 */
+        right: 0;
+        background-color: #2575fc;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+    }
+    .download-resume-btn:hover {
+        background-color: #6a11cb;
+    }
+    @media (max-width: 768px) {
+        .download-resume-btn {
+            position: static;
+            display: inline-block;
+            margin-top: 15px;
+        }
+    }
     </style>
 </head>
 <body>
@@ -293,10 +318,15 @@
             </div>
         </header>
 
-        <section id="about">
-            <h2>Summary</h2>
-            <p>Write a short paragraph about yourself, your background, and what you're passionate about.</p>
-        </section>
+<section id="resume" style="position: relative; padding-bottom: 40px;">
+    <h2>Resume</h2>
+    
+    <p>If you'd like to view my full resume, you can download it below:</p>
+    
+    <a href="your_resume.pdf" download class="download-resume-btn" target="_blank" rel="noopener">
+        Download Resume
+    </a>
+</section>
 
         <section id="projects">
             <h2>Projects</h2>
