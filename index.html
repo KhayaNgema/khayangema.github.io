@@ -406,6 +406,15 @@
       max-height: none !important; /* Allow content height when expanded */
     }
 
+section > .section-content.collapsed {
+  max-height: 0 !important;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  visibility: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
     /* Fixed position, floating, horizontally centered "See More" button */
     #seeMoreBtn {
       position: fixed;
