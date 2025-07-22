@@ -7,17 +7,30 @@
     <link rel="icon" type="image/png" href="favicon.png" />
     <style>
 
-h2 .caret {
-  margin-left: 10px;
-  font-size: 0.75em;
-  user-select: none;
-  transition: transform 0.2s ease;
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-h2.collapsed .caret {
-  transform: rotate(-90deg);
-}
+  h2 {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+            color: #2575fc;
+            font-size: 2rem;
+            border-bottom: 3px solid #6a11cb;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #e0eafc 80%, #cfdef3);
+            border-radius: 6px 6px 0 0;
+  }
+  h2 .caret {
+    margin-left: 10px;
+    font-size: 1.2em;
+    user-select: none;
+    transition: transform 0.3s ease;
+  }
+  h2.collapsed .caret {
+    transform: rotate(-90deg);
+  }
 
   /* Section content wrapper we toggle */
   section > .section-content {
@@ -334,16 +347,6 @@ h2.collapsed .caret {
     }
   }
 
-h2 {
-            color: #2575fc;
-            font-size: 2rem;
-            border-bottom: 3px solid #6a11cb;
-            padding-bottom: 8px;
-            margin-bottom: 25px;
-            font-weight: 600;
-            background: linear-gradient(90deg, #e0eafc 80%, #cfdef3);
-            border-radius: 6px 6px 0 0;
-        }
     </style>
 </head>
 <body>
