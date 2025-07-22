@@ -415,29 +415,32 @@ section > .section-content.collapsed {
   padding-bottom: 0;
 }
 
-    /* Fixed position, floating, horizontally centered "See More" button */
-    #seeMoreBtn {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 9999;
-      background-color: #ffff;
-      color: #4a90e2;
-      padding: 12px 12px;
-      border-radius: 50%;
-      font-weight: 600;
-      border: 1px solid #4a90e2;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      white-space: nowrap;
-      user-select: none;
-    }
-    #seeMoreBtn:hover {
-      background-color: #6a11cb;
-      color: #ffff;
-    }
+  #seeMoreBtn {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background-color: #ffff;
+  color: #4a90e2;
+  padding: 12px 16px;     
+  border-radius: 50px;      
+  font-weight: 600;
+  border: 1px solid #4a90e2;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  user-select: none;
+  min-width: 90px;          
+  text-align: center;
+  font-size: 1rem;
+}
+#seeMoreBtn:hover {
+  background-color: #6a11cb;
+  color: #ffff;
+}
+
         /* Reset and base */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -704,8 +707,8 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Initialize button state on load
-seeMoreBtn.textContent = 'See More ↓';
+
+seeMoreBtn.textContent = 'More ↓';
 seeMoreBtn.dataset.state = 'top';
 
 
