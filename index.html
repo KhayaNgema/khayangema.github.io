@@ -4,64 +4,20 @@
   <meta charset="UTF-8" />
   <title>Khayalethu Ngema Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" href="favicon.png" />
   <style>
-    .project,
-    h1,
-    p,
-    h2,
-    h3,
-    .skills-category,
-    .resume-buttons,
-    #contact p,
-    #contact a {
-      padding-left: 20px;
+    /* Reset and base */
+    *, *::before, *::after {
       box-sizing: border-box;
     }
-
-    h2 {
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #2575fc;
-      font-size: 2rem;
-      border-bottom: 3px solid #6a11cb;
-      padding-bottom: 8px;
-      margin-bottom: 25px;
-      font-weight: 600;
-      background: linear-gradient(90deg, #e0eafc 80%, #cfdef3);
-      border-radius: 6px 6px 0 0;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    h2 .caret {
-      margin-left: 10px;
-      font-size: 1.2em;
-      user-select: none;
-      transition: transform 0.3s ease;
-    }
-    h2.collapsed .caret {
-      transform: rotate(-90deg);
-    }
-
-    /* Section content wrapper we toggle */
-    section > .section-content {
-      transition: max-height 0.4s ease;
-      overflow: hidden;
-    }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       background: linear-gradient(to right, #e0eafc, #cfdef3);
       color: #333;
-      overflow-x: hidden; /* prevent horizontal scroll */
-      white-space: normal; /* normal text wrapping */
+      overflow-x: hidden;
       scroll-behavior: smooth;
+      white-space: normal;
     }
-
     .container {
       max-width: 1100px;
       margin: 40px auto;
@@ -70,7 +26,6 @@
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
-
     header {
       background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
       color: white;
@@ -86,7 +41,6 @@
     }
     header .col-8, header .col-4 {
       padding: 0 15px;
-      box-sizing: border-box;
     }
     header .col-8 {
       flex: 0 0 66.66%;
@@ -113,65 +67,100 @@
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(101,101,101,0.3);
     }
-
     section {
       margin-bottom: 50px;
     }
 
-    /* Grid system */
+    /* Grid */
     .row {
       display: flex;
       flex-wrap: wrap;
       margin-left: -15px;
       margin-right: -15px;
     }
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
-    .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    [class*='col-'] {
       padding-left: 15px;
       padding-right: 15px;
-      box-sizing: border-box;
       flex: 0 0 100%;
       max-width: 100%;
     }
-    .col-1  { flex: 0 0 8.33%;  max-width: 8.33%; }
-    .col-2  { flex: 0 0 16.66%; max-width: 16.66%; }
-    .col-3  { flex: 0 0 25%;    max-width: 25%;    }
-    .col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
-    .col-5  { flex: 0 0 41.66%; max-width: 41.66%; }
-    .col-6  { flex: 0 0 50%;    max-width: 50%;    }
-    .col-7  { flex: 0 0 58.33%; max-width: 58.33%; }
-    .col-8  { flex: 0 0 66.66%; max-width: 66.66%; }
-    .col-9  { flex: 0 0 75%;    max-width: 75%;    }
-    .col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
-    .col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
-    .col-12 { flex: 0 0 100%;   max-width: 100%;   }
 
-    /* Responsive stacking for smaller screens */
+    /* Typography and spacing for headings */
+    h2 {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #2575fc;
+      font-size: 2rem;
+      border-bottom: 3px solid #6a11cb;
+      padding-bottom: 8px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #e0eafc 80%, #cfdef3);
+      border-radius: 6px 6px 0 0;
+      padding-left: 20px;
+      padding-right: 20px;
+      user-select: none;
+    }
+    h2 .caret {
+      margin-left: 10px;
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+    h2.collapsed .caret {
+      transform: rotate(-90deg);
+    }
+
+    /* Section content toggle with smoother CSS method */
+    section > .section-content {
+      max-height: 1000px; /* large number to show content */
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 1;
+      visibility: visible;
+    }
+    section > .section-content.collapsed {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Project styling */
+    .project {
+      background: #f9faff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px rgba(37, 117, 252, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(37, 117, 252, 0.3);
+    }
+    .project h3 {
+      margin-top: 0;
+      color: #6a11cb;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
-      .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-      .container {
-        margin: 20px 10px;
-        padding: 20px;
-      }
       header h1 {
         font-size: 2rem;
       }
       header p {
         font-size: 1rem;
       }
-
-      /* See More button adjustments */
       #seeMoreBtn {
         padding: 10px 20px;
         font-size: 0.95rem;
         bottom: 25px;
       }
     }
-
     @media (max-width: 480px) {
       body {
         font-size: 14px;
@@ -185,15 +174,10 @@
       h2 {
         font-size: 1.2rem;
       }
-      .skills-category h3 {
-        font-size: 1.2rem;
-      }
       .screenshots-container img {
         width: 180px;
         height: 120px;
       }
-
-      /* See More button smaller on very small devices */
       #seeMoreBtn {
         padding: 8px 16px;
         font-size: 0.85rem;
@@ -204,7 +188,6 @@
         box-shadow: 0 6px 14px rgba(37, 117, 252, 0.6);
       }
     }
-
     @media (max-width: 375px) {
       #seeMoreBtn {
         padding: 7px 14px;
@@ -214,200 +197,7 @@
       }
     }
 
-    /* Project styling */
-    .project {
-      background: #f9faff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(37, 117, 252, 0.15);
-      margin-bottom: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .project:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(37, 117, 252, 0.3);
-    }
-    .project h3 {
-      margin-top: 0;
-      color: #6a11cb;
-    }
-    /* Hide old direct project images/videos */
-    .project > img,
-    .project > video {
-      display: none;
-    }
-
-    /* Skills section */
-    .skills-category {
-      margin-bottom: 30px;
-    }
-    .skills-category h3 {
-      color: #6a11cb;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    ul {
-      list-style-type: square;
-      padding-left: 20px;
-      font-size: 1.1rem;
-    }
-    a {
-      color: #2575fc;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    #contact p {
-      font-size: 1.1rem;
-      margin: 12px 0;
-    }
-    #contact a {
-      color: #6a11cb;
-    }
-
-    /* Media section */
-    .project-media {
-      margin-top: 20px;
-    }
-    .project-media h4 {
-      color: #4a4a4a;
-      margin-bottom: 15px;
-      font-size: 1.3rem;
-    }
-
-    /* Screenshots wrapper for scroll buttons */
-    .screenshots-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    /* Scroll buttons styling */
-    .scroll-btn {
-      background-color: rgba(37, 117, 252, 0.8);
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      cursor: pointer;
-      padding: 6px 14px;
-      border-radius: 6px;
-      box-shadow: 0 3px 8px rgba(37, 117, 252, 0.7);
-      user-select: none;
-      transition: background-color 0.3s ease;
-      z-index: 10;
-      flex-shrink: 0;
-    }
-    .scroll-btn:hover {
-      background-color: rgba(37, 117, 252, 1);
-    }
-    .left-btn {
-      margin-right: 10px;
-    }
-    .right-btn {
-      margin-left: 10px;
-    }
-
-    /* Screenshots container */
-    .screenshots-container {
-      flex: 1 1 auto;
-      display: flex;
-      overflow-x: auto;
-      gap: 15px;
-      padding-bottom: 10px;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    /* Hide scrollbar in Webkit */
-    .screenshots-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* Screenshot images */
-    .screenshots-container img {
-      flex-shrink: 0;
-      width: 250px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-      cursor: pointer;
-    }
-    .screenshots-container img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Videos container */
-    .videos-container video {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin-bottom: 10px;
-    }
-
-    #resume {
-      padding-right: 0;
-    }
-
-    .resume-buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      background-color: #2575fc;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
-      transition: background-color 0.3s ease;
-      white-space: nowrap;
-      user-select: none;
-    }
-
-    .btn:hover {
-      background-color: #6a11cb;
-    }
-
-    .btn.btn-view {
-      background-color: #4a90e2;
-    }
-    .btn.btn-view:hover {
-      background-color: #3573d1;
-    }
-
-    /* Responsive: stack buttons vertically on smaller screens */
-    @media (max-width: 480px) {
-      .resume-buttons {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .btn {
-        width: 100%;
-        text-align: center;
-        padding: 14px 0;
-      }
-    }
-
-    section {
-      vertical-align: top;
-      display: block;
-      width: auto;
-      white-space: normal;
-    }
-    .section-content {
-      max-height: none !important; /* Allow content height when expanded */
-    }
-
-    /* Fixed position, floating, horizontally centered "See More" button */
+    /* See More button fixed bottom center */
     #seeMoreBtn {
       position: fixed;
       bottom: 30px;
@@ -446,7 +236,7 @@
             I am committed to writing high-quality code, continually improving my skills, and delivering applications with excellent user experiences.
           </p>
         </div>
-        <div class="col-4" style="text-align: center">
+        <div class="col-4" style="text-align: center;">
           <img src="header-image.png" alt="Header Image" />
         </div>
       </div>
@@ -600,8 +390,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Caret toggle logic
-      document.querySelectorAll('section h2').forEach(heading => {
+      // Toggle caret and collapse content
+      document.querySelectorAll('section h2').forEach((heading) => {
         const caret = heading.querySelector('.caret');
         if (!caret) return;
 
@@ -610,26 +400,10 @@
 
         heading.style.userSelect = 'none';
 
-        // Initialize expanded or collapsed state
-        if (heading.classList.contains('collapsed')) {
-          sectionContent.style.maxHeight = '0px';
-        } else {
-          sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-        }
-
         heading.addEventListener('click', () => {
-          const isCollapsed = heading.classList.toggle('collapsed');
-          if (isCollapsed) {
-            sectionContent.style.maxHeight = '0px';
-          } else {
-            sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-          }
-        });
-
-        window.addEventListener('resize', () => {
-          if (!heading.classList.contains('collapsed')) {
-            sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-          }
+          // Toggle collapsed class on both heading and content
+          const isCollapsed = sectionContent.classList.toggle('collapsed');
+          heading.classList.toggle('collapsed', isCollapsed);
         });
       });
 
@@ -665,19 +439,21 @@
       seeMoreBtn.textContent = 'See More ↓';
       seeMoreBtn.dataset.state = 'top';
 
-      // Scroll buttons for screenshots
+      // Scroll buttons functionality for screenshots (existing)
       document.querySelectorAll('.screenshots-wrapper').forEach(wrapper => {
         const container = wrapper.querySelector('.screenshots-container');
         const btnLeft = wrapper.querySelector('.left-btn');
         const btnRight = wrapper.querySelector('.right-btn');
         const scrollAmount = 250;
 
-        btnLeft.addEventListener('click', () => {
-          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
-        btnRight.addEventListener('click', () => {
-          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
+        if (btnLeft && btnRight && container) {
+          btnLeft.addEventListener('click', () => {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+          });
+          btnRight.addEventListener('click', () => {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          });
+        }
       });
     });
   </script>
