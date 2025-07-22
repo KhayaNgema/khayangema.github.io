@@ -1,478 +1,470 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Khayalethu Ngema Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <style>
+  <meta charset="UTF-8" />
+  <title>Khayalethu Ngema Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    .project,
+    h1,
+    p,
+    h2,
+    h3,
+    .skills-category,
+    .resume-buttons,
+    #contact p,
+    #contact a {
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
 
-.project,
-h1,
-p,
-h2,
-h3,
-.skills-category,
-.resume-buttons,
-#contact p,
-#contact a {
-  padding-left: 20px;
-  box-sizing: border-box;
-}
+    h2 {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #2575fc;
+      font-size: 2rem;
+      border-bottom: 3px solid #6a11cb;
+      padding-bottom: 8px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #e0eafc 80%, #cfdef3);
+      border-radius: 6px 6px 0 0;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    h2 .caret {
+      margin-left: 10px;
+      font-size: 1.2em;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    h2.collapsed .caret {
+      transform: rotate(-90deg);
+    }
 
-h2 {
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #2575fc;
-  font-size: 2rem;
-  border-bottom: 3px solid #6a11cb;
-  padding-bottom: 8px;
-  margin-bottom: 25px;
-  font-weight: 600;
-  background: linear-gradient(90deg, #e0eafc 80%, #cfdef3);
-  border-radius: 6px 6px 0 0;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-h2 .caret {
-  margin-left: 10px;
-  font-size: 1.2em;
-  user-select: none;
-  transition: transform 0.3s ease;
-}
-h2.collapsed .caret {
-  transform: rotate(-90deg);
-}
+    /* Section content wrapper we toggle */
+    section > .section-content {
+      transition: max-height 0.4s ease;
+      overflow: hidden;
+    }
 
-/* Section content wrapper we toggle */
-section > .section-content {
-  transition: max-height 0.4s ease;
-  overflow: hidden;
-}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      color: #333;
+      overflow-x: hidden; /* prevent horizontal scroll */
+      white-space: normal; /* normal text wrapping */
+      scroll-behavior: smooth;
+    }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
-  color: #333;
-  overflow-x: hidden; /* prevent horizontal scroll */
-  white-space: normal; /* normal text wrapping */
-  scroll-behavior: smooth;
-}
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
 
-.container {
-  max-width: 1100px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
+    header {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    header .row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 20px 0;
+      margin: 0 -15px;
+    }
+    header .col-8, header .col-4 {
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    header .col-8 {
+      flex: 0 0 66.66%;
+      max-width: 66.66%;
+    }
+    header .col-4 {
+      flex: 0 0 33.33%;
+      max-width: 33.33%;
+      text-align: center;
+    }
+    header h1 {
+      margin-bottom: 10px;
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0;
+      font-weight: 300;
+    }
+    header img {
+      max-width: 250px;
+      height: 300px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(101,101,101,0.3);
+    }
 
-header {
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  color: white;
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header .row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 20px 0;
-  margin: 0 -15px;
-}
-header .col-8, header .col-4 {
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-header .col-8 {
-  flex: 0 0 66.66%;
-  max-width: 66.66%;
-}
-header .col-4 {
-  flex: 0 0 33.33%;
-  max-width: 33.33%;
-  text-align: center;
-}
-header h1 {
-  margin-bottom: 10px;
-  font-size: 2.8rem;
-  font-weight: 700;
-}
-header p {
-  font-size: 1.2rem;
-  margin-top: 0;
-  font-weight: 300;
-}
-header img {
-  max-width: 250px;
-  height: 300px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(101,101,101,0.3);
-}
+    section {
+      margin-bottom: 50px;
+    }
 
-section {
-  margin-bottom: 50px;
-}
+    /* Grid system */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+    .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .col-1  { flex: 0 0 8.33%;  max-width: 8.33%; }
+    .col-2  { flex: 0 0 16.66%; max-width: 16.66%; }
+    .col-3  { flex: 0 0 25%;    max-width: 25%;    }
+    .col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
+    .col-5  { flex: 0 0 41.66%; max-width: 41.66%; }
+    .col-6  { flex: 0 0 50%;    max-width: 50%;    }
+    .col-7  { flex: 0 0 58.33%; max-width: 58.33%; }
+    .col-8  { flex: 0 0 66.66%; max-width: 66.66%; }
+    .col-9  { flex: 0 0 75%;    max-width: 75%;    }
+    .col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
+    .col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
+    .col-12 { flex: 0 0 100%;   max-width: 100%;   }
 
-/* Grid system */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -15px;
-  margin-right: -15px;
-}
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
-.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-  padding-left: 15px;
-  padding-right: 15px;
-  box-sizing: border-box;
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-.col-1  { flex: 0 0 8.33%;  max-width: 8.33%; }
-.col-2  { flex: 0 0 16.66%; max-width: 16.66%; }
-.col-3  { flex: 0 0 25%;    max-width: 25%;    }
-.col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
-.col-5  { flex: 0 0 41.66%; max-width: 41.66%; }
-.col-6  { flex: 0 0 50%;    max-width: 50%;    }
-.col-7  { flex: 0 0 58.33%; max-width: 58.33%; }
-.col-8  { flex: 0 0 66.66%; max-width: 66.66%; }
-.col-9  { flex: 0 0 75%;    max-width: 75%;    }
-.col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
-.col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
-.col-12 { flex: 0 0 100%;   max-width: 100%;   }
+    /* Responsive stacking for smaller screens */
+    @media (max-width: 768px) {
+      .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+      .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      .container {
+        margin: 20px 10px;
+        padding: 20px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
 
-/* Responsive stacking for smaller screens */
-@media (max-width: 768px) {
-  .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
-  .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  .container {
-    margin: 20px 10px;
-    padding: 20px;
-  }
-  header h1 {
-    font-size: 2rem;
-  }
-  header p {
-    font-size: 1rem;
-  }
+      /* See More button adjustments */
+      #seeMoreBtn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        bottom: 25px;
+      }
+    }
 
-  /* See More button adjustments */
-  #seeMoreBtn {
-    padding: 10px 20px;
-    font-size: 0.95rem;
-    bottom: 25px;
-  }
-}
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      .skills-category h3 {
+        font-size: 1.2rem;
+      }
+      .screenshots-container img {
+        width: 180px;
+        height: 120px;
+      }
 
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
-  header h1 {
-    font-size: 1.5rem;
-  }
-  header p {
-    font-size: 0.9rem;
-  }
-  h2 {
-    font-size: 1.2rem;
-  }
-  .skills-category h3 {
-    font-size: 1.2rem;
-  }
-  .screenshots-container img {
-    width: 180px;
-    height: 120px;
-  }
+      /* See More button smaller on very small devices */
+      #seeMoreBtn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        bottom: 20px;
+        white-space: normal;
+        width: auto;
+        min-width: 140px;
+        box-shadow: 0 6px 14px rgba(37, 117, 252, 0.6);
+      }
+    }
 
-  /* See More button smaller on very small devices */
-  #seeMoreBtn {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    bottom: 20px;
-    white-space: normal;
-    width: auto;
-    min-width: 140px;
-    box-shadow: 0 6px 14px rgba(37, 117, 252, 0.6);
-  }
-}
+    @media (max-width: 375px) {
+      #seeMoreBtn {
+        padding: 7px 14px;
+        font-size: 0.8rem;
+        bottom: 18px;
+        min-width: 120px;
+      }
+    }
 
-@media (max-width: 375px) {
-  #seeMoreBtn {
-    padding: 7px 14px;
-    font-size: 0.8rem;
-    bottom: 18px;
-    min-width: 120px;
-  }
-}
+    /* Project styling */
+    .project {
+      background: #f9faff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(37, 117, 252, 0.15);
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(37, 117, 252, 0.3);
+    }
+    .project h3 {
+      margin-top: 0;
+      color: #6a11cb;
+    }
+    /* Hide old direct project images/videos */
+    .project > img,
+    .project > video {
+      display: none;
+    }
 
-/* Project styling */
-.project {
-  background: #f9faff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(37, 117, 252, 0.15);
-  margin-bottom: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(37, 117, 252, 0.3);
-}
-.project h3 {
-  margin-top: 0;
-  color: #6a11cb;
-}
-/* Hide old direct project images/videos */
-.project > img,
-.project > video {
-  display: none;
-}
+    /* Skills section */
+    .skills-category {
+      margin-bottom: 30px;
+    }
+    .skills-category h3 {
+      color: #6a11cb;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 20px;
+      font-size: 1.1rem;
+    }
+    a {
+      color: #2575fc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #contact p {
+      font-size: 1.1rem;
+      margin: 12px 0;
+    }
+    #contact a {
+      color: #6a11cb;
+    }
 
-/* Skills section */
-.skills-category {
-  margin-bottom: 30px;
-}
-.skills-category h3 {
-  color: #6a11cb;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-ul {
-  list-style-type: square;
-  padding-left: 20px;
-  font-size: 1.1rem;
-}
-a {
-  color: #2575fc;
-  text-decoration: none;
-  font-weight: 600;
-}
-a:hover {
-  text-decoration: underline;
-}
-#contact p {
-  font-size: 1.1rem;
-  margin: 12px 0;
-}
-#contact a {
-  color: #6a11cb;
-}
+    /* Media section */
+    .project-media {
+      margin-top: 20px;
+    }
+    .project-media h4 {
+      color: #4a4a4a;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
 
-/* Media section */
-.project-media {
-  margin-top: 20px;
-}
-.project-media h4 {
-  color: #4a4a4a;
-  margin-bottom: 15px;
-  font-size: 1.3rem;
-}
+    /* Screenshots wrapper for scroll buttons */
+    .screenshots-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
 
-/* Screenshots wrapper for scroll buttons */
-.screenshots-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+    /* Scroll buttons styling */
+    .scroll-btn {
+      background-color: rgba(37, 117, 252, 0.8);
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 6px;
+      box-shadow: 0 3px 8px rgba(37, 117, 252, 0.7);
+      user-select: none;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+    .scroll-btn:hover {
+      background-color: rgba(37, 117, 252, 1);
+    }
+    .left-btn {
+      margin-right: 10px;
+    }
+    .right-btn {
+      margin-left: 10px;
+    }
 
-/* Scroll buttons styling */
-.scroll-btn {
-  background-color: rgba(37, 117, 252, 0.8);
-  border: none;
-  color: white;
-  font-size: 1.8rem;
-  cursor: pointer;
-  padding: 6px 14px;
-  border-radius: 6px;
-  box-shadow: 0 3px 8px rgba(37, 117, 252, 0.7);
-  user-select: none;
-  transition: background-color 0.3s ease;
-  z-index: 10;
-  flex-shrink: 0;
-}
-.scroll-btn:hover {
-  background-color: rgba(37, 117, 252, 1);
-}
-.left-btn {
-  margin-right: 10px;
-}
-.right-btn {
-  margin-left: 10px;
-}
+    /* Screenshots container */
+    .screenshots-container {
+      flex: 1 1 auto;
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    /* Hide scrollbar in Webkit */
+    .screenshots-container::-webkit-scrollbar {
+      display: none;
+    }
 
-/* Screenshots container */
-.screenshots-container {
-  flex: 1 1 auto;
-  display: flex;
-  overflow-x: auto;
-  gap: 15px;
-  padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-}
-/* Hide scrollbar in Webkit */
-.screenshots-container::-webkit-scrollbar {
-  display: none;
-}
+    /* Screenshot images */
+    .screenshots-container img {
+      flex-shrink: 0;
+      width: 250px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    .screenshots-container img:hover {
+      transform: scale(1.03);
+    }
 
-/* Screenshot images */
-.screenshots-container img {
-  flex-shrink: 0;
-  width: 250px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-.screenshots-container img:hover {
-  transform: scale(1.03);
-}
+    /* Videos container */
+    .videos-container video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 10px;
+    }
 
-/* Videos container */
-.videos-container video {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-bottom: 10px;
-}
+    #resume {
+      padding-right: 0;
+    }
 
-#resume {
-  padding-right: 0;
-}
+    .resume-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-.resume-buttons {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
+    .btn {
+      background-color: #2575fc;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+      user-select: none;
+    }
 
-.btn {
-  background-color: #2575fc;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
-  transition: background-color 0.3s ease;
-  white-space: nowrap;
-  user-select: none;
-}
+    .btn:hover {
+      background-color: #6a11cb;
+    }
 
-.btn:hover {
-  background-color: #6a11cb;
-}
+    .btn.btn-view {
+      background-color: #4a90e2;
+    }
+    .btn.btn-view:hover {
+      background-color: #3573d1;
+    }
 
-.btn.btn-view {
-  background-color: #4a90e2;
-}
-.btn.btn-view:hover {
-  background-color: #3573d1;
-}
+    /* Responsive: stack buttons vertically on smaller screens */
+    @media (max-width: 480px) {
+      .resume-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px 0;
+      }
+    }
 
-/* Responsive: stack buttons vertically on smaller screens */
-@media (max-width: 480px) {
-  .resume-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .btn {
-    width: 100%;
-    text-align: center;
-    padding: 14px 0;
-  }
-}
+    section {
+      vertical-align: top;
+      display: block;
+      width: auto;
+      white-space: normal;
+    }
+    .section-content {
+      max-height: none !important; /* Allow content height when expanded */
+    }
 
-section {
-  vertical-align: top;
-  display: block;
-  width: auto;
-  white-space: normal;
-}
-.section-content {
-  max-height: none !important; /* Allow content height when expanded */
-}
-
-/* Fixed position, floating, horizontally centered "See More" button */
-#seeMoreBtn {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  background-color: #ffff;
-  color: #4a90e2;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-weight: 600;
-  border: 1px solid #4a90e2;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  white-space: nowrap;
-  user-select: none;
-}
-#seeMoreBtn:hover {
-  background-color: #6a11cb;
-  color: #ffff;
-}
-
-    </style>
+    /* Fixed position, floating, horizontally centered "See More" button */
+    #seeMoreBtn {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background-color: #ffff;
+      color: #4a90e2;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: 1px solid #4a90e2;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      white-space: nowrap;
+      user-select: none;
+    }
+    #seeMoreBtn:hover {
+      background-color: #6a11cb;
+      color: #ffff;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="row">
-                <div class="col-8">
-                    <h1>Khayalethu Xoliswa Ngema</h1>
-<p>
-I am Khayalethu, a passionate Junior C# Developer with one year of hands-on experience building, deploying, and maintaining modern web applications.<br>
-I am skilled in applying Object-Oriented Programming (OOP) principles such as abstraction, encapsulation, inheritance, and polymorphism to create clean, modular, and scalable code.
-My expertise includes working with C#, HTML, MVC (Core), Bootstrap, JavaScript, CSS, SQL Server, and Microsoft Azure.<br>
-I combine backend and frontend development to craft functional, visually engaging, and responsive web solutions while adhering to SOLID principles for maintainable and extendable software design.<br>
-I am committed to writing high-quality code, continually improving my skills, and delivering applications with excellent user experiences.
-</p>
+  <div class="container">
+    <header>
+      <div class="row">
+        <div class="col-8">
+          <h1>Khayalethu Xoliswa Ngema</h1>
+          <p>
+            I am Khayalethu, a passionate Junior C# Developer with one year of hands-on experience building, deploying, and maintaining modern web applications.<br />
+            I am skilled in applying Object-Oriented Programming (OOP) principles such as abstraction, encapsulation, inheritance, and polymorphism to create clean, modular, and scalable code.
+            My expertise includes working with C#, HTML, MVC (Core), Bootstrap, JavaScript, CSS, SQL Server, and Microsoft Azure.<br />
+            I combine backend and frontend development to craft functional, visually engaging, and responsive web solutions while adhering to SOLID principles for maintainable and extendable software design.<br />
+            I am committed to writing high-quality code, continually improving my skills, and delivering applications with excellent user experiences.
+          </p>
+        </div>
+        <div class="col-4" style="text-align: center">
+          <img src="header-image.png" alt="Header Image" />
+        </div>
+      </div>
+    </header>
 
-                </div>
-                <div class="col-4" style="text-align: center;">
-                    <img src="header-image.png" alt="Header Image"/>
-                </div>
-            </div>
-        </header>
-
-<section id="resume">
+    <section id="resume">
       <h2>
         Resume
         <span class="caret">▼</span>
       </h2>
       <div class="section-content">
         <div class="resume-buttons">
-          <a href="your_resume.pdf" target="_blank" rel="noopener" class="btn btn-view" aria-label="View Resume PDF">
-            View Resume
-          </a>
-          <a href="your_resume.pdf" download class="btn btn-download" aria-label="Download Resume PDF">
-            Download Resume
-          </a>
+          <a href="your_resume.pdf" target="_blank" rel="noopener" class="btn btn-view" aria-label="View Resume PDF">View Resume</a>
+          <a href="your_resume.pdf" download class="btn btn-download" aria-label="Download Resume PDF">Download Resume</a>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
       <h2>
         Projects
@@ -509,7 +501,7 @@ I am committed to writing high-quality code, continually improving my skills, an
 
           <p><a href="https://yourprojectlink.com">View Project</a></p>
         </div>
-        
+
         <div class="project">
           <h3>Project 2: Chatbot Assistant</h3>
           <p>An AI-powered chatbot for customer support.</p>
@@ -546,7 +538,6 @@ I am committed to writing high-quality code, continually improving my skills, an
       </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
       <h2>
         Skills
@@ -591,7 +582,6 @@ I am committed to writing high-quality code, continually improving my skills, an
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
       <h2>
         Contact Information
@@ -602,101 +592,94 @@ I am committed to writing high-quality code, continually improving my skills, an
         <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">yourprofile</a></p>
       </div>
     </section>
-<div style="text-align: center; margin: 30px 0;">
-  <button id="seeMoreBtn" class="btn">See More</button>
-</div>
 
+    <div style="text-align: center; margin: 30px 0;">
+      <button id="seeMoreBtn" class="btn">See More ↓</button>
+    </div>
   </div>
 
-<script>
-document.querySelectorAll('section h2').forEach(heading => {
-  const caret = heading.querySelector('.caret');
-  if (!caret) return;
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Caret toggle logic
+      document.querySelectorAll('section h2').forEach(heading => {
+        const caret = heading.querySelector('.caret');
+        if (!caret) return;
 
-  const sectionContent = heading.nextElementSibling;
-  if (!sectionContent) return;
+        const sectionContent = heading.nextElementSibling;
+        if (!sectionContent) return;
 
-  heading.style.userSelect = 'none';
+        heading.style.userSelect = 'none';
 
-  // Initialize expanded or collapsed state
-  if (heading.classList.contains('collapsed')) {
-    sectionContent.style.maxHeight = '0px';
-  } else {
-    sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-  }
+        // Initialize expanded or collapsed state
+        if (heading.classList.contains('collapsed')) {
+          sectionContent.style.maxHeight = '0px';
+        } else {
+          sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
+        }
 
-  heading.addEventListener('click', () => {
-    const isCollapsed = heading.classList.toggle('collapsed');
-    if (isCollapsed) {
-      sectionContent.style.maxHeight = '0px';
-    } else {
-      sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-    }
-  });
+        heading.addEventListener('click', () => {
+          const isCollapsed = heading.classList.toggle('collapsed');
+          if (isCollapsed) {
+            sectionContent.style.maxHeight = '0px';
+          } else {
+            sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
+          }
+        });
 
-  window.addEventListener('resize', () => {
-    if (!heading.classList.contains('collapsed')) {
-      sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-    }
-  });
-});
+        window.addEventListener('resize', () => {
+          if (!heading.classList.contains('collapsed')) {
+            sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
+          }
+        });
+      });
 
+      // See More / Top button logic
+      const seeMoreBtn = document.getElementById('seeMoreBtn');
+      const resumeSection = document.getElementById('resume');
 
-const seeMoreBtn = document.getElementById('seeMoreBtn');
-const resumeSection = document.getElementById('resume');
+      seeMoreBtn.addEventListener('click', () => {
+        if (seeMoreBtn.dataset.state === 'bottom') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          resumeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
 
-seeMoreBtn.addEventListener('click', () => {
-  if (seeMoreBtn.dataset.state === 'bottom') {
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    // Scroll to Resume section header
-    resumeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-});
+      window.addEventListener('scroll', () => {
+        const scrollFromTop = window.scrollY || window.pageYOffset;
+        const documentHeight = document.documentElement.scrollHeight;
+        const windowHeight = window.innerHeight;
+        const scrollFromBottom = documentHeight - (scrollFromTop + windowHeight);
+        const nearBottomThreshold = 100;
 
-// Listen to scroll events to toggle button text and state
-window.addEventListener('scroll', () => {
-  const scrollFromTop = window.scrollY || window.pageYOffset;
-  const documentHeight = document.documentElement.scrollHeight;
-  const windowHeight = window.innerHeight;
-  const scrollFromBottom = documentHeight - (scrollFromTop + windowHeight);
+        if (scrollFromBottom <= nearBottomThreshold) {
+          seeMoreBtn.textContent = 'Top ↑';
+          seeMoreBtn.dataset.state = 'bottom';
+        } else {
+          seeMoreBtn.textContent = 'See More ↓';
+          seeMoreBtn.dataset.state = 'top';
+        }
+      });
 
-  // Threshold to consider near bottom (pixels)
-  const nearBottomThreshold = 100;
+      // Initialize button state
+      seeMoreBtn.textContent = 'See More ↓';
+      seeMoreBtn.dataset.state = 'top';
 
-  if (scrollFromBottom <= nearBottomThreshold) {
-    // Near or at bottom - show "Top ↑"
-    seeMoreBtn.textContent = 'Top ↑';
-    seeMoreBtn.dataset.state = 'bottom';
-  } else {
-    // Else "See More ↓"
-    seeMoreBtn.textContent = 'See More ↓';
-    seeMoreBtn.dataset.state = 'top';
-  }
-});
+      // Scroll buttons for screenshots
+      document.querySelectorAll('.screenshots-wrapper').forEach(wrapper => {
+        const container = wrapper.querySelector('.screenshots-container');
+        const btnLeft = wrapper.querySelector('.left-btn');
+        const btnRight = wrapper.querySelector('.right-btn');
+        const scrollAmount = 250;
 
-// Initialize button text
-(() => {
-  seeMoreBtn.textContent = 'See More ↓';
-  seeMoreBtn.dataset.state = 'top';
-})();
-
-
-  // Scroll button functionality (your existing code)
-  document.querySelectorAll('.screenshots-wrapper').forEach(wrapper => {
-    const container = wrapper.querySelector('.screenshots-container');
-    const btnLeft = wrapper.querySelector('.left-btn');
-    const btnRight = wrapper.querySelector('.right-btn');
-    const scrollAmount = 250; 
-
-    btnLeft.addEventListener('click', () => {
-      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        btnLeft.addEventListener('click', () => {
+          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        btnRight.addEventListener('click', () => {
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+      });
     });
-    btnRight.addEventListener('click', () => {
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
